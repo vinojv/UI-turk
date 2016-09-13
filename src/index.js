@@ -1,31 +1,16 @@
 import React, {Component} from 'React';
 import {render} from 'react-dom';
+import {App} from './App';
+import reducer from './reducer/reducer';
 
-class App extends Component {
-  constructor(props, context){
-    super(props, context);
+var store = createStore(
+  reducer,
+  applyMiddleware(sagaMiddleWare)
+);
 
-  }
+sagaMiddleWare.run(rootSaga)
 
-  render(){
-
-    return (
-      <div>
-        <div className="Container">
-          
-        </div>
-        <div className="input__container">
-          <label className="input__row__wrapper">Upload file
-            <input type="file"/>
-          </label>
-          <div className="input__row__wrapper"><textarea rows="3"></textarea></div>
-          <div className="input__row__wrapper"><button>Submit</button></div>
-        </div>
-      </div>
-      )
-  }
-
-};
-
-render(<App/>,
+render(<Provider store={store}>
+    <App/>
+  </Provider>,
   document.getElementById('root'))

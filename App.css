@@ -1,6 +1,71 @@
-ul {
-    width: 199px;
-    min-height: 130px;
-    /* background: aqua; */
-    border: 1px solid rgba(0, 0, 0, 0.21);
+.Container {
+    background: antiquewhite;
+    width: 100%;
+}
+
+body {
+    margin: 0;
+    position: relative;
+    background: aliceblue;
+    font-size: 16pt;
+    font-weight: 600;
+}
+
+.input__row__wrapper {
+    padding: 2px;
+}
+
+label.input__row__wrapper  {
+        cursor: pointer;
+	    border: 1px solid rgba(0, 0, 0, 0.3);
+	    padding: 0px 8px 0px 8px;
+	    border-radius: 5px;
+	    font-size: 17px;
+	    background: #f7f7f7;
+	    color: rgba(43, 43, 43, 0.94);
+	    font-weight: 100;
+	    position: relative;
+}
+.input__row__wrapper input[type=file]{
+	cursor: inherit;
+    display: block;
+    font-size: 999px;
+    filter: alpha(opacity=0);
+    min-height: 100%;
+    min-width: 100%;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    text-align: right;
+    top: 0;
+
+}
+
+.input__row__wrapper textarea {
+    width: Calc(100% - 12px);
+    background: rgba(251, 251, 251, 0.97);
+	border: 1px solid rgba(0, 0, 0, 0.3);
+	border-radius: 2px;
+}
+
+.input__row__wrapper button {
+        cursor: pointer;
+	    border: 1px solid rgba(0, 0, 0, 0.3);
+	    padding: 0px 8px 0px 8px;
+	    border-radius: 5px;
+	    font-size: 17px;
+	    background: #f7f7f7;
+	    color: rgba(43, 43, 43, 0.94);
+	    font-weight: 100;
+	    position: relative;
+}
+
+.input__container {
+    background: #e5eaea;
+    width: 100%;
+    /* min-height: 35px; */
+    bottom: 0px;
+    position: absolute;
+    padding: 8px 3px 6px 6px;
+    /* display: inline-block; */
 }

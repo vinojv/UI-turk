@@ -1,90 +1,42 @@
 import * as _ from "lodash";
+import {normaliseTable, normaliseList, normaliseGraph, genericNormaliser} from "../utils/utils";
 
-const initialState = [ ]
-
-const normaliseForTable = function (data) {
-
-  let group = _.groupBy(temp, function(value, key){
-    return Array.isArray(value)
-  })
-
-  if (group[true] === 2) {
-    
-    return _(group[true]).map(function (item){
-      if (typeof item[0] == 'string')
-       return { headers: item}
-
-      if (Array.isArray(item[0]))
-       return { body: item}
-
-    }).reduce(function(acc, item=[]){
-     return {...acc, ...item}
-
-    }, { }).value();
-  
-  }
-
-}
-
-const normalise = function(data) {
-  if (!data) return;
-  let result;
-  try{
-    result = JSON.parse(data);
-  } catch (exception){
-    
-    alert("There is some issue in the data you have provided")
-    return;
-    // return {
-    //   type: "text",
-    //   content: data
-    // }
-  }
-
-  if (Array.isArray(data)){
-    if (typeof data[0] === 'string')
-      return {
-        type: "list",
-        data
-     }
-    if (typeof data[0] === 'number')
-     return {
-      type: "graph",
-      data
-     }
-  }
-
-
-  let normalised = normaliseForTable(data);
-
-
-  if (normalised && normalised.body){
-    return {
-      type: "table",
-      data: normalised
+convertToJson = function (stream){
+    try {
+        var data = JSON.parse(stream);
+        if (Array.isArray(data))
+            return data;
+        else [ data ];
+    }catch (e){
+        alert("something is wrong with given data")
     }
-  }
-
 }
 
-function main () {
-    return _.map(data, function (value, key) {
-        return { type: key, data: value }
-    })
-}
-export default function reducer (state = initialState, action={}) {
+export default function reducer (state = [], action={}) {
 
-  switch (action.type) {
-    case "PUSH":
-      var data = normalise(action.data);
-      if (!data) return state;
-      
-      return [
-        ...state,
-        data
-      ]
+    switch (action.type) {
+        case "PUSH":
+            let parsedData = convertToJson(action.data)
+            if (!parsedData) return state;
 
-    default:
-      return state
-  }
+            let data = _.map(data, function (value, key) {
+                let normalisefunc;
+                try{
+                    normalisefunc = eval (normalise + key)
+                }catch (e){
+                    normalisefunc = undefined;
+                }
+
+                if (normalisefunc) return normalisefunc(value)
+                return genericNormaliser(value)
+            })
+
+            return [
+                ...state,
+                ...data
+            ]
+
+        default:
+            return state
+    }
 };

@@ -1,9 +1,11 @@
 var webpack = require('webpack');
 var WebpackDevServer = require('webpack-dev-server');
 var config = require('./webpack.config.js');
+
 new WebpackDevServer(webpack(config), {
     publicPath: config.output.publicPath,
     hot: true,
+    quiet: true,
     historyApiFallback: true,
     stats: {colors: true}
 }).listen(8086, 'localhost', function (err) {

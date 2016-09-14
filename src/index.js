@@ -1,14 +1,8 @@
 import React, {Component} from 'React';
 import {render} from 'react-dom';
-import {App} from './App';
-import reducer from './reducer/reducer';
-
-var store = createStore(
-  reducer,
-  applyMiddleware(sagaMiddleWare)
-);
-
-sagaMiddleWare.run(rootSaga)
+import { Provider, connect } from 'react-redux';
+import App from './App';
+import store from './store';
 
 render(<Provider store={store}>
     <App/>

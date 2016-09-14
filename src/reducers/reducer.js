@@ -1,10 +1,8 @@
 import * as _ from "lodash";
-const initialState = {
-  visibilityFilter: "SHOW_ALL",
-  todos: []
-}
 
-const normaliseForTable (data) {
+const initialState = [ ]
+
+const normaliseForTable = function (data) {
 
   let group = _.groupBy(temp, function(value, key){
     return Array.isArray(value)
@@ -22,7 +20,7 @@ const normaliseForTable (data) {
     }).reduce(function(acc, item=[]){
      return {...acc, ...item}
 
-    },{ }).value();
+    }, { }).value();
   
   }
 
@@ -36,6 +34,7 @@ const normalise = function(data) {
   } catch (exception){
     
     alert("There is some issue in the data you have provided")
+    return;
     // return {
     //   type: "text",
     //   content: data
@@ -55,7 +54,10 @@ const normalise = function(data) {
      }
   }
 
+
   let normalised = normaliseForTable(data);
+
+
   if (normalised && normalised.body){
     return {
       type: "table",
@@ -63,15 +65,23 @@ const normalise = function(data) {
     }
   }
 
+}
 
+function main () {
+    return _.map(data, function (value, key) {
+        return { type: key, data: value }
+    })
 }
 export default function reducer (state = initialState, action={}) {
 
   switch (action.type) {
     case "PUSH":
+      var data = normalise(action.data);
+      if (!data) return state;
+      
       return [
         ...state,
-        action.data
+        data
       ]
 
     default:

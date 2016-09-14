@@ -22,7 +22,7 @@ export default function reducer (state = [], action={}) {
             let data = _.map(data, function (value, key) {
                 let normalisefunc;
                 try{
-                    normalisefunc = eval (normalise + key)
+                    normalisefunc = eval (normalise + _.startCase(key))
                 }catch (e){
                     normalisefunc = undefined;
                 }

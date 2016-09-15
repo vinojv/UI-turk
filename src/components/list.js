@@ -9,6 +9,7 @@ class List extends Component {
 
     render() {
         var {title, values} = this.props.data;
+        console.log(this.props.data)
         return (<div>
             {title && <h3>{title}</h3>}
             <ul>
@@ -18,3 +19,4 @@ class List extends Component {
     }
 
 };
+export default List;

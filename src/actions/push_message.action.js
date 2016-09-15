@@ -1,6 +1,6 @@
-export default function push (text) {
+export default function (content) {
   return {
       type: "PUSH",
-      data: text
+      data: content
   }
 };

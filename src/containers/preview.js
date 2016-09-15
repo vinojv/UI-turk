@@ -11,12 +11,14 @@ class Preview extends Component {
 	}
 	render (){
         var {contents} = this.props;
-		return (<div className="Container">
+        console.log(contents)
+        return (<div className="Container">
 	      Containers
-            {contents.map(function(content){
-                if (content.type == 'graph' ) return <Graph key = {content.id} data={content}></Graph>;
-                if (content.type == 'list' ) return <List key = {content.id} data={content}></List>;
-                if (content.type == 'table' ) return <Table key = {content.id} data={content}></Table>;
+            {contents.map((content)=>{
+                if (content.type == 'graph' ) return <Graph key = {content.id} data={content.data}></Graph>;
+                if (content.type == 'list' ) return <List key = {content.id} data={content.data}></List>;
+                if (content.type == 'table' ) return <Table key = {content.id} data={content.data}></Table>;
+                return 'Invalid'
             })}
 	    </div>)
 
@@ -24,6 +26,7 @@ class Preview extends Component {
 }
 
 var convertStateToProps = function (state) {
+    console.log("convertStateToProps", state)
     return {
         contents: [...state]
     }
@@ -34,4 +37,4 @@ var dispatcher = function (dispatch) {
 
     }
 }
-export default connect(convertStateToProps, dispatcher)(Preview);
+export default connect (convertStateToProps, dispatcher)(Preview);

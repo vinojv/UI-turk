@@ -17,10 +17,15 @@ class Table extends Component {
         return (<div>
             <table>
                 <thead>
-                    <rows values={headers}></rows>
+                <tr>
+                    {headers.map(header=><td>{header}</td>)}
+
+                </tr>
+                    {/*<rows values={headers}></rows>*/}
                 </thead>
                 <tbody>
-                    <rows values={values}></rows>
+                    {values.map(value=><tr>{value.map(tds=><td>{tds}</td>)}</tr>)}
+                    {/*<rows values={values}></rows>*/}
                 </tbody>
             </table>
 
@@ -28,3 +33,5 @@ class Table extends Component {
     }
 
 };
+
+export default Table;

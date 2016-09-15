@@ -1,26 +1,35 @@
 /**
  * Created by vinojv on 15/09/16.
  */
+import _ from 'lodash';
+
 const normaliseList = function (input) {
     if (Array.isArray(input))
         return {
+            id: _.uniqueId(),
             type: "list",
-            list: input
+            data: {
+                values: input
+            }
         }
-    let heading = _.findKey(input, item => typeof item == 'string')
-    let list = _.findKey(input, item => Array.isArray(item))
+    let title = _.findKey(input, item => typeof item == 'string')
+    let values = _.findKey(input, item => Array.isArray(item))
 
 
     return {
         type: "list",
-        heading,
-        list
+        id: _.uniqueId(),
+        data: {
+            title,
+            values
+        }
     }
 };
 
 const normaliseGraph = function (input) {
 
     return {
+        id: _.uniqueId(),
         type: "graph",
         data: input
     }
@@ -42,9 +51,12 @@ const normaliseTable = function(input) {
     }
 
     let data = {
+        id: _.uniqueId(),
         type: "table",
-        headers: undefined,
-        values: undefined
+        data: {
+            headers: undefined,
+            values: undefined
+        }
     }
 
     if (Array.isArray(input)){
@@ -57,31 +69,32 @@ const normaliseTable = function(input) {
     }
 
     if (_.has(input, 'headers'))
-        data.headers = input.headers;
+        data.data.headers = input.headers;
 
     if (_.has(input, 'body')) {
         if (input.body && input.body[0] && Array.isArray(input.body[0])){
-            if (typeof input.body[0][0] == 'string') data.values = input.body;
-            else if (data.headers) data.values = getBody(input.body, data.headers); // if input.body = [{ }]
+            if (typeof input.body[0][0] == 'string') data.data.values = input.body;
+            else if (data.data.headers) data.data.values = getBody(input.body, data.data.headers); // if input.body = [{ }]
             else {
                 generateHeadandBody(input);
             }
         }
     }
+
     if (input.body && input.header) return data
 
 
-    let singleDimensionArray = _.findKey(input, (val, key)=>(Array.isArray(value) && !Array.isArray(value[0])) );
+    let singleDimensionArray = _.findKey(input, (val, key)=>(Array.isArray(val) && !Array.isArray(val[0])) );
     if (input[singleDimensionArray]) {
         if (typeof input[singleDimensionArray][0] == 'object'){
             generateHeadandBody(input[singleDimensionArray][0])
         }
-        else data.headers = input[singleDimensionArray]
+        else data.data.headers = input[singleDimensionArray]
     }
 
-    let twoDimensionArray = _.findKey(input, (val, key)=>(Array.isArray(value) && Array.isArray(value[0]) ));
+    let twoDimensionArray = _.findKey(input, (val, key)=>(Array.isArray(val) && Array.isArray(val[0]) ));
 
-    if (input[twoDimensionArray]) data.values = input[twoDimensionArray];
+    if (input[twoDimensionArray]) data.data.values = input[twoDimensionArray];
 
     return data;
 
@@ -89,7 +102,7 @@ const normaliseTable = function(input) {
 };
 
 const genericNormaliser = function (input) {
-    if (!input) return {};
+    if (!input) return;
 
     if (Array.isArray(input)){
         if (typeof input[0] == 'string') return normaliseList(input);
@@ -105,9 +118,10 @@ const genericNormaliser = function (input) {
 
 
     return {
+        id: _.uniqueId(),
         type: "",
-        data
+        data: input
     }
 };
 
-export default { normaliseTable, normaliseList, normaliseGraph, genericNormaliser };
+export { normaliseTable, normaliseList, normaliseGraph, genericNormaliser };

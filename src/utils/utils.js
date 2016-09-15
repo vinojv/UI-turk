@@ -108,14 +108,13 @@ const genericNormaliser = function (input) {
         if (typeof input[0] == 'string') return normaliseList(input);
     }
 
-    let findstring = _.findKey(input, typeof input == 'string');
-    let singleDimArray = _.findKey(input, Array.isArray(input) && !Array.isArray(input[0]));
-    let twoDimArray = _.findKey(input, Array.isArray(input) && !Array.isArray(input[0]));
+    let findstring = _.findKey(input, obj=>typeof obj == 'string');
+    let singleDimArray = _.findKey(input, obj=>Array.isArray(obj) && !Array.isArray(obj[0]));
+    let twoDimArray = _.findKey(input, obj=>Array.isArray(obj) && !Array.isArray(obj[0]));
 
     if (twoDimArray) return normaliseTable(input);
     if (singleDimArray && typeof singleDimArray[0] !== 'string') return normaliseTable(input);
     if (singleDimArray && typeof singleDimArray[0] === 'string') return normaliseList(input);
-
 
     return {
         id: _.uniqueId(),

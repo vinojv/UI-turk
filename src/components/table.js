@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import _ from 'lodash';
 
 const rows = ({values}) => (values.map((columns)=><tr>
         {columns.map((column)=><td>{column}</td>)}
@@ -18,13 +18,13 @@ class Table extends Component {
             <table>
                 <thead>
                 <tr>
-                    {headers.map(header=><td>{header}</td>)}
+                    {headers.map(header=><td key={_.uniqueId()}>{header}</td>)}
 
                 </tr>
                     {/*<rows values={headers}></rows>*/}
                 </thead>
                 <tbody>
-                    {values.map(value=><tr>{value.map(tds=><td>{tds}</td>)}</tr>)}
+                    {values.map(value=><tr key={_.uniqueId()}>{value.map(tds=><td key={_.uniqueId()}>{tds}</td>)}</tr>)}
                     {/*<rows values={values}></rows>*/}
                 </tbody>
             </table>

@@ -34,7 +34,7 @@ export default function reducer (state = [], action={}) {
                     }
                     if (normalisefunc) return normalisefunc(value)
 
-                    return genericNormaliser(value)
+                    return utils.genericNormaliser(value)
                 })
             })
             if (!data) return state;

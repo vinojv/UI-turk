@@ -20,8 +20,8 @@ const normaliseList = function (input) {
         type: "list",
         id: _.uniqueId(),
         data: {
-            title,
-            values
+            title: input[title],
+            values: input[values]
         }
     }
 };
@@ -41,13 +41,15 @@ const normaliseTable = function(input) {
             return _.map(headers, header => value[header])
         })
     }
-    var getHeaders = function (value = {}) {
-        return Object.keys(value)
+    var getHeaders = function (value = { }) {
+        return _.keys(value)
     }
 
     var generateHeadandBody = function (value){
-        data.headers = getHeaders(value[0])
-        data.values = getBody(value, data.headers)
+        if (!data.data.headers)
+            data.data.headers = getHeaders(value[0]);
+        console.log("data.data.headers", data.data.headers, "value", value)
+        data.data.values = getBody(value, data.data.headers)
     }
 
     let data = {
@@ -75,19 +77,20 @@ const normaliseTable = function(input) {
         if (input.body && input.body[0] && Array.isArray(input.body[0])){
             if (typeof input.body[0][0] == 'string') data.data.values = input.body;
             else if (data.data.headers) data.data.values = getBody(input.body, data.data.headers); // if input.body = [{ }]
-            else {
-                generateHeadandBody(input);
-            }
+            else generateHeadandBody(input.body);
+
+        } else {
+            generateHeadandBody(input.body)
         }
     }
 
-    if (input.body && input.header) return data
+    if (data.data.body && data.data.headers) return data;
 
 
     let singleDimensionArray = _.findKey(input, (val, key)=>(Array.isArray(val) && !Array.isArray(val[0])) );
     if (input[singleDimensionArray]) {
         if (typeof input[singleDimensionArray][0] == 'object'){
-            generateHeadandBody(input[singleDimensionArray][0])
+            generateHeadandBody(input[singleDimensionArray])
         }
         else data.data.headers = input[singleDimensionArray]
     }

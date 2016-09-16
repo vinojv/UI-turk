@@ -1,23 +1,26 @@
-import React, { Component } from 'react';
-import ChatBox from './containers/chatBox';
-import Preview from './containers/preview';
+import React, {Component} from 'react';
+
+import Header from './components/header';
+import EditorPage from './containers/editorPage';
+
 
 class App extends Component {
-  constructor(props, context){
-    super(props, context);
+    constructor(props, context) {
+        super(props, context);
 
-  }
+    }
 
-  render(){
+    render() {
 
-    return (
-      <div>
-        <Preview></Preview>
-        <ChatBox></ChatBox>
-      </div>
-      )
-  }
+        return (
+            <div>
+                <Header></Header>
+                <EditorPage/>
+            </div>
+        )
+    }
 
-};
+}
+;
 
 export default App;

@@ -1,0 +1,12 @@
+.wrapper{
+    padding: 40px;
+    height:calc(100% - 50px);
+}
+.bgCard{
+    height:250px;
+    background: #5a81bc;
+    position: absolute;
+    top: 50px;
+    right: 0;
+    left: 0;
+}

@@ -59,13 +59,13 @@ const normaliseGraph = function (input) {
     console.log(data.columns);   
 
     var values = data.columns.map(c => {
-       return arr.map(a => a[c.label])
+       return input.map(a => a[c.label])
     });
       
     data.options.hAxis = minmax(values[0]);
     data.options.vAxis = minmax(values[1]);
       
-    
+    console.log("GRAPH",data);
     return {
         id: _.uniqueId(),
         type: "graph",

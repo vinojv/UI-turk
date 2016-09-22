@@ -9,7 +9,7 @@ class Graph extends Component {
     }
 
     render() {
-    	let {rows, columns, options} = this.props;
+    	let {rows, columns, options} = this.props.data;
         return (
         	<div className={"my-pretty-chart-container"}>
       			<Chart chartType = "LineChart" 

@@ -1,5 +1,5 @@
 {
-  "name": "earmark",
+  "name": "turk",
   "version": "0.0.1",
   "private": true,
   "devDependencies": {
@@ -29,7 +29,8 @@
     "webpack-dashboard": "^0.1.7",
     "webpack-dev-middleware": "^1.6.1",
     "webpack-dev-server": "^1.14.1",
-    "webpack-hot-middleware": "^2.12.2"
+    "webpack-hot-middleware": "^2.12.2",
+    "react-google-charts": "^1.1.1"
   },
   "dependencies": {
     "babel-core": "^6.11.4",

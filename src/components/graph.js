@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import {Chart} from 'react-google-charts';
 
 class Graph extends Component {
     constructor(props, context){
@@ -8,9 +9,20 @@ class Graph extends Component {
     }
 
     render() {
-        return (<div>
-            YET TO DESIGN FOR GRAPHS ;)
-        </div>)
+    	let {rows, columns, options} = this.props;
+        return (
+        	<div className={"my-pretty-chart-container"}>
+      			<Chart chartType = "LineChart" 
+      					rows = {rows}
+      					columns = {columns}
+      					options = {options}
+      					graph_id = "ScatterChart"
+      					width={"100%"}
+      					height={"400px"}
+      					legend_toggle={true}
+      			/>
+        	</div>
+        )
     }
 
 };

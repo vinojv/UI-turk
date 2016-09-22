@@ -20,9 +20,47 @@ const normaliseList = function (input) {
 
 const normaliseGraph = function (input) {
 
+    var minmax = (array) => {
+        return array.reduce((op,a)=>{
+          op.minValue = op.minValue < a ? op.minValue : a;
+          op.maxValue = op.maxValue > a ? op.maxValue : a;
+          return op;
+        },{minValue: Infinity, maxValue: -Infinity});
+    }
+    let data = {
+        rows: [],
+        columns: [],
+        options:  {
+          hAxis: {minValue: Infinity, maxValue:-Infinity},
+          vAxis: {minValue: Infinity, maxValue:-Infinity}
+        };
+    }
+
+    data.rows = input.map((plot) => {  
+      return Object.keys(plot).map(key => plot[key]);  
+    });
+    console.log(data.rows);
+
+    data.columns = Object.keys(input[0]).map(plot => {
+      var p ={};
+      p.label = plot;
+      p.type = typeof(input[0][plot]);
+      return p;
+    });
+
+    console.log(data.columns);   
+
+    var values = data.columns.map(c => {
+       return arr.map(a => a[c.label])
+    });
+      
+    data.options.hAxis = minmax(values[0]);
+    data.options.vAxis = minmax(values[1]);
+      
+    
     return {
         type: "graph",
-        data: input
+        data: data
     }
 };
 

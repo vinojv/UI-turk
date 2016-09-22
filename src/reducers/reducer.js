@@ -1,7 +1,7 @@
 import * as _ from "lodash";
 import {normaliseTable, normaliseList, normaliseGraph, genericNormaliser} from "../utils/utils";
 
-convertToJson = function (stream){
+var convertToJson = function (stream){
     try {
         var data = JSON.parse(stream);
         if (Array.isArray(data))

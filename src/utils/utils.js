@@ -41,7 +41,7 @@ const normaliseGraph = function (input) {
         options:  {
           hAxis: {minValue: Infinity, maxValue:-Infinity},
           vAxis: {minValue: Infinity, maxValue:-Infinity}
-        };
+        }
     }
 
     data.rows = input.map((plot) => {  

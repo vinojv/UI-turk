@@ -1,23 +1,23 @@
-import React, { Component } from 'react';
-import ChatBox from './containers/chatBox';
-import Preview from './containers/preview';
-import {Chart} from 'react-google-charts';
+import React, {Component} from 'react';
+
+import Header from './components/header';
+import EditorPage from './containers/editorPage';
+
 
 class App extends Component {
-  constructor(props, context){
-    super(props, context);
-    this.state = {};
+  constructor(props, context) {
+       super(props, context);
+   }
 
-  }
+   render() {
 
-  render(){
-    return ( 
-    <div>
-        <Preview></Preview>
-        <ChatBox></ChatBox>
-      </div>
+      return (
+        <div>
+          <Header></Header>
+          <EditorPage/>
+        </div>
       )
-  }
+    }
 
 };
 

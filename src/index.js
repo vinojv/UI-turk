@@ -4,6 +4,7 @@ import { Provider, connect } from 'react-redux';
 import App from './App';
 import store from './store';
 
+
 render(<Provider store={store}>
     <App/>
   </Provider>,

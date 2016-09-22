@@ -26,3 +26,5 @@ class Graph extends Component {
     }
 
 };
+
+export default Graph;

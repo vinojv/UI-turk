@@ -1,0 +1,112 @@
+.wrapper{
+    width: calc(30% - 15px);
+    float: left;
+    background: #fafbfd;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    position: relative;
+    margin-right: 15px;
+    height: 100%;
+}
+.conversationWrapper{
+    height:90%;
+    overflow: auto;
+    border-radius: 5px;
+}
+.conversationTitle{
+    background:rgba(65, 103, 175, 0.2);
+    padding: 15px 0 15px 20px;
+    color: #000;
+    font-size: 16px;
+    font-weight: 500;
+}
+.conversation{
+    height:calc(100% - 48px);
+    overflow: auto;
+    padding: 20px 30px;
+}
+.editorContainer{
+    height: 10%;
+    overflow: auto;
+    position: relative;
+    width: 100%;
+    background-color: #fff;
+    overflow-x: hidden;
+    word-wrap: break-word;
+}
+
+.submit{
+    position: absolute;
+    color: #fff;
+    background: #7ec150;
+    right: 20px;
+    padding: 10px 20px;
+    border-radius: 3px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.upload{
+    position: absolute;
+    color: #000;
+    right: 130px;
+    border-radius: 3px;
+    top: 50%;
+    width: 70px !important;
+    transform: translateY(-50%);
+    z-index: 14;
+    font-size: 13px;
+    cursor: pointer !important;
+}
+.upload input{
+    position: absolute;
+    opacity: 0;
+    right: 0;
+    left: 0;
+    width:100%;
+    cursor: pointer;
+}
+.msgWrapper{
+    width:100%;
+    position: relative;
+}
+.profilePic{
+    width:60px;
+    height:60px;
+    float: left;
+    background:url('../images/adam.png');
+    background-size:contain;
+}
+.msg{
+    float: left;
+    width: calc(100% - 140px);
+    font-size: 16px;
+    line-height: 23px;
+    background: #ededed;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    margin-left: 25px;
+    min-height: 60px;
+    position: relative;
+    color:#242424;
+}
+.msg:before{
+    content:'';
+    width: 0px;
+    height: 0px;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 10px solid #ededed;
+    position: absolute;
+    right: 100%;
+    top:50%;
+    transform:translateY(-50%);
+}
+.time{
+    position: absolute;
+    right:-1%;
+    top:42%;
+    transform:translateY(-50%);
+    font-size: 12px;
+
+}

@@ -31,7 +31,7 @@
     "webpack-dashboard": "^0.2.0",
     "webpack-dev-middleware": "^1.6.1",
     "webpack-dev-server": "^1.14.1",
-    "webpack-hot-middleware": "^2.12.2",
+    "webpack-hot-middleware": "^2.13.1",
     "react-google-charts": "^1.1.1"
   },
   "dependencies": {

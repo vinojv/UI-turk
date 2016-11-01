@@ -35,7 +35,7 @@
     "react-google-charts": "^1.1.1"
   },
   "dependencies": {
-    "babel-core": "^6.11.4",
+    "babel-core": "^6.18.1",
     "babel-loader": "^6.2.4",
     "babel-preset-react": "^6.11.1",
     "classnames": "^2.2.5",
